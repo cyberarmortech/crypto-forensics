@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Forensics</title>
+    <!-- Local Vis Network CSS -->
+    <link href="lib/vis-network.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="loginContainer" class="login-container">
+        <h1>Crypto Forensics</h1>
+        <button id="googleLogin" class="login-button">
+            <img src="https://www.google.com/favicon.ico" alt="Google" class="google-icon">
+            Sign in with Google
+        </button>
+    </div>
+
+    <div id="appContainer" class="container" style="display: none;">
+        <div class="sidebar">
+            <div class="user-info">
+                <img id="userPhoto" class="user-photo" src="" alt="User Photo">
+                <span id="userName"></span>
+                <button onclick="signOut()" class="sign-out-btn">Sign Out</button>
+            </div>
+            <h2>Crypto Forensics</h2>
+            <div class="session-controls">
+                <input type="text" id="sessionName" placeholder="Session Name">
+                <button onclick="createSession()">Create Session</button>
+                <button onclick="loadSessions()">Load Sessions</button>
+                <select id="sessionSelect" onchange="loadSession(this.value)">
+                    <option value="">Select Session</option>
+                </select>
+            </div>
+            <div class="address-controls">
+                <select id="cryptoType">
+                    <option value="ETH">Ethereum</option>
+                    <option value="BTC">Bitcoin</option>
+                    <option value="DOMAIN">Domain</option>
+                </select>
+                <input type="text" id="addressInput" placeholder="Enter Crypto Address">
+                <button onclick="addAddress()">Add Address</button>
+            </div>
+            <div class="node-controls">
+                <input type="text" id="labelInput" placeholder="Enter Tag">
+                <button onclick="addLabel()">Add Tag</button>
+                <input type="color" id="colorPicker" onchange="changeNodeColor(this.value)">
+                <button onclick="applyColor()">Apply Color</button>
+                <button onclick="applyExpand()">Expand</button>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="tabs">
+                <button class="tab-button active" data-tab="network-tab">Network Graph</button>
+                <button class="tab-button" data-tab="table-tab">Transaction Data</button>
+                <button class="tab-button" data-tab="accounts-tab">Account Summary</button>
+            </div>
+            <div class="tab-content">
+                <div id="network-tab" class="tab-pane active ">
+                    <div id="network" style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px;" ></div>
+                </div>
+                <div id="table-tab" class="tab-pane">
+                    <div class="table-container">
+                        <table id="transactionTable">
+                            <thead>
+                                <tr>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Amount</th>
+                                    <th>Time</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="accounts-tab" class="tab-pane">
+                    <div class="table-container">
+                        <table id="accountsTable">
+                            <thead>
+                                <tr>
+                                    <th>Address</th>
+                                    <th>Type</th>
+                                    <th>Total Sent</th>
+                                    <th>Total Received</th>
+                                    <th>Balance</th>
+                                    <th>Transactions</th>
+                                    <th>Tags</th>
+                                    <th>Last Activity</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load dependencies in correct order -->
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    
+    <!-- Vis Network JS -->
+    <script src="lib/vis-network.min.js"></script>
+    
+    <!-- Load configuration first -->
+    <script src="config.js"></script>
+    
+    <!-- Load application logic -->
+    <script src="app.js"></script>
+</body>
+</html>

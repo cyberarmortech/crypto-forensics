@@ -1,0 +1,27 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow users to read and write their own sessions
+    match /sessions/{sessionId} {
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+      allow read, update, delete: if request.auth != null && resource.data.userId == request.auth.uid;
+    }
+    
+    // Allow users to read and write nodes related to their sessions
+    match /nodes/{nodeId} {
+      allow create: if request.auth != null && exists(/databases/$(database)/documents/sessions/$(request.resource.data.sessionId)) &&
+        get(/databases/$(database)/documents/sessions/$(request.resource.data.sessionId)).data.userId == request.auth.uid;
+      allow read, update, delete: if request.auth != null && exists(/databases/$(database)/documents/sessions/$(resource.data.sessionId)) &&
+        get(/databases/$(database)/documents/sessions/$(resource.data.sessionId)).data.userId == request.auth.uid;
+    }
+    
+    // Allow users to read and write edges related to their sessions
+    match /edges/{edgeId} {
+      allow create: if request.auth != null && exists(/databases/$(database)/documents/sessions/$(request.resource.data.sessionId)) &&
+        get(/databases/$(database)/documents/sessions/$(request.resource.data.sessionId)).data.userId == request.auth.uid;
+      allow read, update, delete: if request.auth != null && exists(/databases/$(database)/documents/sessions/$(resource.data.sessionId)) &&
+        get(/databases/$(database)/documents/sessions/$(resource.data.sessionId)).data.userId == request.auth.uid;
+    }
+  }
+}

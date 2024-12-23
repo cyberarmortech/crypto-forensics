@@ -1,0 +1,25 @@
+[debug] [2024-12-03T14:20:07.141Z] ----------------------------------------------------------------------
+[debug] [2024-12-03T14:20:07.142Z] Command:       /usr/bin/node /usr/local/bin/firebase deploy --only hosting
+[debug] [2024-12-03T14:20:07.142Z] CLI Version:   13.27.0
+[debug] [2024-12-03T14:20:07.142Z] Platform:      linux
+[debug] [2024-12-03T14:20:07.142Z] Node Version:  v18.19.0
+[debug] [2024-12-03T14:20:07.142Z] Time:          Tue Dec 03 2024 09:20:07 GMT-0500 (Eastern Standard Time)
+[debug] [2024-12-03T14:20:07.143Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-12-03T14:20:07.176Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-12-03T14:20:07.176Z] > authorizing via signed-in user (nguyen_nguyen@cyberarmor.tech)
+[debug] [2024-12-03T14:20:07.176Z] [iam] checking project cryptotracer-9e369 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-12-03T14:20:07.181Z] Checked if tokens are valid: true, expires at: 1733238922123
+[debug] [2024-12-03T14:20:07.182Z] Checked if tokens are valid: true, expires at: 1733238922123
+[debug] [2024-12-03T14:20:07.182Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/cryptotracer-9e369:testIamPermissions [none]
+[debug] [2024-12-03T14:20:07.182Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/cryptotracer-9e369:testIamPermissions x-goog-quota-user=projects/cryptotracer-9e369
+[debug] [2024-12-03T14:20:07.182Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/cryptotracer-9e369:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-12-03T14:20:07.355Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/cryptotracer-9e369:testIamPermissions 200
+[debug] [2024-12-03T14:20:07.355Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/cryptotracer-9e369:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-12-03T14:20:07.356Z] Checked if tokens are valid: true, expires at: 1733238922123
+[debug] [2024-12-03T14:20:07.356Z] Checked if tokens are valid: true, expires at: 1733238922123
+[debug] [2024-12-03T14:20:07.356Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/cryptotracer-9e369 [none]
+[debug] [2024-12-03T14:20:07.360Z] *** [apiv2] error from fetch(https://firebase.googleapis.com/v1beta1/projects/cryptotracer-9e369, {"headers":{},"method":"GET","signal":{}}): FetchError: request to https://firebase.googleapis.com/v1beta1/projects/cryptotracer-9e369 failed, reason: connect ECONNREFUSED 0.0.0.0:443
+[debug] [2024-12-03T14:20:07.361Z] Failed to make request to https://firebase.googleapis.com/v1beta1/projects/cryptotracer-9e369 (original: request to https://firebase.googleapis.com/v1beta1/projects/cryptotracer-9e369 failed, reason: connect ECONNREFUSED 0.0.0.0:443)
+[error] 
+[error] Error: Assertion failed: resolving hosting target of a site with no site name or target name. This should have caused an error earlier
